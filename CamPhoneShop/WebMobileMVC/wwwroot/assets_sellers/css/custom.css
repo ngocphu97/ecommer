@@ -1,0 +1,250 @@
+.right-panel header.header {
+  background: #ff5722;
+}
+
+.btn-primary-custom {
+  background: #ff5722;
+  border: 0;
+}
+
+.bage-cus {
+  height: 28px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img {
+  display: flex;
+  justify-content: center;
+  align-self: end;
+}
+
+.dataTables_paginate .pagination li.active a{
+  background: #ff5722;
+  border-color: #ff5722;
+}
+
+/*  */
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+  height: 180px;
+  width: 180px;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  cursor: pointer;
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.badge-complete {
+  background: #00c292;
+}
+.badge {
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+.badge-pending {
+  background: #fb9678;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -25px;
+  margin-left: -25px;
+}
+body {
+  display: table;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  width: 100%;
+}
+.card .nav-tabs a {
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 700;
+  padding: .25em .5em;
+}
+.h5 {
+  font-weight: 200;
+}
+.media-obj {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #fffdf5;
+  margin-bottom: 10px;
+}
+
+.media-obj2 {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.media-obj .media {
+  margin-right: 15px;
+}
+.diachi {
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  color: #878787;
+}
+.img-ctdh {
+  height: 60px;
+  width: 60px;
+}
+tr {
+  text-align: center;
+}
+.ct {
+  color: #000;
+  font-family: "Open Sans", sans-serif;
+}
+
+.ctp {
+  margin-right: 19px;
+  color: #000;
+}
+
+.fa.fa-star:hover {
+  cursor: pointer;
+  color: yellow;
+}
+
+.btn-orange {
+  border-color: #ff5722 !important;
+  background: #ff5722 !important;
+}
+
+.btn-search {
+  border-color: #ff5722 !important;
+  background: #ff5722 !important;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.btn-xuat {
+  border: 1px solid;
+  background: #ffffff !important;
+  margin-right: 20px
+}
+
+.total-number {
+  font-weight: 600;
+  color: #ff5722;
+  font-size: 2em;
+}
+
+.total-text {
+  color: #ff5722;
+  line-height: 1em;
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+
+/* rating */
+
+fieldset,
+label {
+  margin: 0;
+  padding: 0;
+}
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating>input {
+  display: none;
+}
+
+.rating>label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating>.half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating>label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating>input:checked~label,
+/* show gold star when clicked */
+.rating:not(:checked)>label:hover,
+/* hover current star */
+.rating:not(:checked)>label:hover~label {
+  color: #FFD700;
+}
+
+/* hover previous stars in list */
+
+.rating>input:checked+label:hover,
+/* hover current star when changing rating */
+.rating>input:checked~label:hover,
+.rating>label:hover~input:checked~label,
+/* lighten current selection */
+.rating>input:checked~label:hover~label {
+  color: #FFED85;
+}
+
+.list-custom {
+  padding: 15px !important;
+}
+
+.badge-cus {
+  width: 100%;
+  padding: 5px;
+}
+img.cangiua {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+p.canle {
+  padding-left: 20px;
+  padding-right: 20px;
+}

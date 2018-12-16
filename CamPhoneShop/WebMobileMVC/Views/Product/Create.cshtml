@@ -1,0 +1,497 @@
+﻿
+@{
+    Layout = "_Layout";
+}
+<style>
+    .inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+
+        .inputfile + label {
+            height: 180px;
+            width: 180px;
+            font-size: 1.25em;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border: .2rem dashed #bababa;
+        }
+
+
+            .inputfile:focus + label,
+            .inputfile + label:hover {
+                cursor: pointer;
+            }
+
+        .inputfile + label {
+            cursor: pointer;
+            /* "hand" cursor */
+        }
+
+        .inputfile:focus + label {
+            outline: 1px dotted #000;
+            outline: -webkit-focus-ring-color auto 5px;
+        }
+
+    .image-preview {
+        border: 1px solid;
+        width: 180px;
+        height: 180px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+    }
+
+    .cons {
+        position: relative;
+    }
+
+    .cancel-action {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        top: 11%;
+        left: 86%;
+    }
+
+    .images-detail {
+        display: flex;
+    }
+
+    .price {
+        background: #FAFAFA;
+        font-weight: 500;
+        color: #ff5722;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+        .price .currency {
+            font-size: 1.5rem;
+        }
+
+        .price .value {
+            font-size: 2.5rem;
+            margin: 0 20px 0 5px;
+        }
+
+        .price .center {
+            background: #ff5722;
+            color: #ffffff
+        }
+</style>
+
+@ViewBag.mess
+
+<div class="content">
+    <div class="animated fadeIn row">
+        <div class="col-lg-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <strong class="card-title" style="font-size: 25px">THÊM SẢN PHẨM</strong>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div style="display: flex">
+                                <div class="preview" style="margin-right: 10px">
+                                    <input type="file" name="file" id="file" class="inputfile" onchange="readURL(this);" />
+                                    <label for="file">
+                                        <i class="fa fa-plus" style="color: #bababa"></i>
+                                        <i>Thêm hình ảnh</i>
+                                    </label>
+                                </div>
+                                <div>
+                                    <div id="img-preview" style="display: flex">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button onclick="postData()">Click</button>
+
+                        <div class="col-md-12">
+                            <div class="information">
+                                @using (Html.BeginForm())
+                                {
+                                <form action="/Product/Tao" method="post">
+                                    <div class="action float-right">
+                                        <button class="btn btn-sm btn-warning btn-primary-custom" style="color: #ffffff">
+                                            <i class="fa fa-save"></i> Lưu
+                                        </button>
+                                    </div>
+
+                                    <input type="submit" value="Create" class="btn btn-default" />
+
+                                    <br>
+                                    <h4>
+                                        <a data-toggle="collapse" href="#basicInfomation" role="button"
+                                           aria-expanded="false" aria-controls="basicInfomation">
+                                            Thông tin cơ bản <i class="fa fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                    <br>
+                                    <div class="collapse" id="basicInfomation">
+                                        <div class="collapse" id="basicInfomation">
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Tên sản phẩm
+                                                </label>
+                                                <div class="col-md-10">
+                                                    @Html.TextBox("productName", null, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Mô tả sản phẩm (Tối đa 500 ký tự)
+                                                </label>
+                                                <div class="col-md-10">
+                                                    @Html.TextArea("description", null, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Nội dung
+                                                </label>
+                                                <div class="col-md-10">
+                                                    @Html.TextArea("information", null, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Danh mục sản phẩm
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        @Html.DropDownList("danhmucsp",
+                                                     new SelectList(Enum.GetValues(typeof(TenDanhMuc))),
+                                                     new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Tình trạng hàng
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        @Html.DropDownList("productStatus",
+                                                    new SelectList(Enum.GetValues(typeof(TinhTrangHang))),
+                                                    new { @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Bảo hành
+                                                </label>
+                                                <div class="col-md-10">
+                                                    @Html.TextBox("guaranteeTime", null, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h4>
+                                        <a data-toggle="collapse" href="#productConfig" role="button"
+                                           aria-expanded="false" aria-controls="productConfig">
+                                            Cấu hình sản phẩm <i class="fa fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                    <br>
+
+                                    <div class="collapse" id="productConfig">
+                                        <div class="form-group row ">
+                                            <label class="col-md-2">
+                                                Thương hiệu
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("brand", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Bộ nhớ
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("memory", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Mạng
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("network", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                SIM
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("sim", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Chống thấm nước
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("waterproof",
+                                                           new SelectList(Enum.GetValues(typeof(ChongThamNuoc))),
+                                                           new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Màn hình
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("screen", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Hệ điều hành
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("system", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Ram
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("ram", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Camera trước
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("frontCam", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Camera sau
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("behindCam", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Bluetooth
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("bluetooth", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Pin
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("battery", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <h4>
+                                        <a data-toggle="collapse" href="#productType" role="button"
+                                           aria-expanded="false" aria-controls="productType">
+                                            Loại sản phẩm <i class="fa fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                    <br>
+
+                                    <div class="collapse" id="productType">
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Màu
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("color", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Giá bán
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("sellPrice", 0, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Giá gốc
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("price", 0, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2">
+                                                Giá khuyến mãi
+                                            </label>
+                                            <div class="col-md-10">
+                                                @Html.TextBox("discountPrice", 0, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+    var temp = [];
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var x = document.createElement("img");
+                x.setAttribute("src", e.target.result);
+                x.setAttribute("class", "image-preview")
+                x.setAttribute("alt", "image preview");
+                x.setAttribute("id", "image-preview");
+
+                var btn = document.createElement("button");
+                btn.setAttribute("class", "btn btn-sm btn-danger");
+
+                var icon = document.createElement("i");
+                icon.className = "fa fa-times";
+                btn.appendChild(icon);
+
+                var cancelAction = document.createElement("div");
+                cancelAction.setAttribute("class", "cancel-action");
+                cancelAction.appendChild(btn);
+
+                var container = document.createElement("div");
+                container.setAttribute("class", "cons");
+
+                container.appendChild(x);
+                container.appendChild(cancelAction);
+
+                document.getElementById("img-preview").appendChild(container);
+
+                btn.addEventListener("click", function () {
+                    container.parentNode.removeChild(container);
+                });
+
+                // thêm vô mảng với xóa mảng
+
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function postData() {
+        var product = {
+            Ten: "san pham test",
+            IDDanhMuc: 1,
+            Mota: "Day la mo ta",
+            NoiDung: "Noi dung",
+            Hinh: "Hinh 1",
+            HinhCT: "hinh 1",
+            ThoiGianBH: 10,
+            TinhTrangHang: true,
+
+            CauHinh: {
+                ThuongHieu: "samsung",
+                BoNho: "256gb",
+                Mang: "lte",
+                Sim: "1 sim",
+                ChongThamNuoc: "khong",
+                KTManHinh: "4inch",
+                HeDieuHanh: "android",
+                Ram: "1gb",
+                CMRTruoc: "khong",
+                CMRSau: "co",
+                GPS: "co",
+                Bluetooth: "co",
+                Pin: "2000mh"
+            },
+            PhanLoaiSP: [
+                {
+                    SoLuong: 3,
+                    GiaKM: 600,
+                    GiaBan: 12000,
+                    GiaGoc: 11000,
+                    Mau: "black"
+                },
+                {
+                    SoLuong: 10,
+                    GiaKM: 900,
+                    GiaBan: 15000,
+                    GiaGoc: 12000,
+                    Mau: "blue"
+                }
+            ]
+        };
+        
+        $.ajax({
+            type: 'PUT',
+            url: "http://localhost:57233/api/sanpham/add",
+            data: JSON.stringify(product),
+            success: function (returnPayload) {
+                console && console.log("request succeeded");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console && console.log("request failed");
+            },
+            dataType: "xml",
+            contentType: "application/json",
+            processData: false,
+            async: false
+        });
+    }
+</script>

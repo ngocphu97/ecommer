@@ -1,0 +1,570 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_LayoutSellers.cshtml";
+}
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- date range picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+</head>
+
+<style>
+    .bage-cus-available {
+        width: 150px;
+        margin: 15px 0;
+        color: #ffffff;
+        background: #ff5722 !important;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bage-cus-comming {
+        width: 150px;
+        margin: 15px 0;
+        color: #ffffff;
+        background: green !important;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-image {
+        width: 100px;
+        height: 100px
+    }
+
+    .v-align {
+        position: relative;
+        vertical-align: middle !important;
+    }
+
+    .product-image-container .item {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .product-image-container .product-image {
+        width: 100px;
+        height: 100px;
+        border: 1px solid;
+        margin: 3px;
+    }
+
+    .div-image {
+        position: relative;
+    }
+
+    .div-image span {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        width: 91%;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        background: #ff5722;
+        color: #ffffff;
+        padding: 0px 5px;
+    }
+
+    .product-image-container .product-image:hover {
+        cursor: pointer;
+        border: 3px solid #ff5722;
+    }
+
+    .v-align {
+        position: relative;
+        vertical-align: middle !important;
+    }
+
+    .v-align span {
+        position: absolute;
+        right: 35px;
+        top: 53px;
+        font-size: small;
+        display: flex;
+        color: #ff5722;
+    }
+</style>
+
+<ul>
+
+    @foreach (KhuyenMai i in Model.content)
+    {
+        <li>@i.Ten</li>
+
+    }
+</ul>
+
+<div class="content">
+    <div class="animated fadeIn row">
+        <div class="col-lg-12">
+            <div class="card">
+
+                <div class="card-header card-promotion">
+                    <h2 class="text-uppercase promotion-title" id="eventTitle">
+                        Khuyến mãi 20/11
+                    </h2>
+                    <span id="bageStatus" class="badge badge-warning bage-cus-available center" style="background-color:green">
+                        <i class="fa fa-tags"></i>
+                        <strong id="bageStatusText">
+                            Sắp diễn ra
+                        </strong>
+                    </span>
+                    <div class="promotion-time">
+                        <span>
+                            <i class="fa fa-calendar"></i> Thời gian diễn ra:
+                        </span>
+                        <span>
+                            <strong id="eventTime">11/12 07:00 AM - 11/13 03:00 PM</strong>
+                        </span>
+                        <span>
+                            <a data-toggle="collapse" href="#editPromotionTime" role="button" aria-expanded="false"
+                               aria-controls="editPromotionTime">
+                                <i class="fa fa-pencil"></i> Sửa khuyến mãi
+                            </a>
+                        </span>
+
+                        <div class="collapse" id="editPromotionTime">
+                            <div class="card card-body">
+                                <div class="col-md-5">
+                                    <div class="edit-promotion">
+                                        Tên chương trình:
+                                        <input class="form-control" type="text" value="Khuyến mãi 20/11"
+                                               onchange="onEditEventTitle(this.value)">
+                                    </div>
+                                    <div class="edit-promotion">
+                                        Thời gian diễn ra:
+                                        <input class="form-control" onchange="onEditDate(this.value)" type="text"
+                                               name="datetimes" placeholder="11/12 07:00 AM - 11/13 03:00 PM" />
+                                    </div>
+
+                                    <div class="edit-promotion">
+                                        Trạng thái chương trình:
+                                        <select class="form-control" onchange="onChangeStatus(this.value)">
+                                            <option value="comming">Sắp diễn ra</option>
+                                            <option value="happening">Đang diễn ra</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="edit-promotion" style="font-size: small; color: grey;">
+                                        <i>
+                                            <i class="fa fa-info-circle"></i>
+                                            Chỉ có thể rút ngắn thời gian khuyến mãi
+                                        </i>
+                                    </div>
+                                    <div>
+                                        <button style="color: #ffffff" class="btn btn-warning btn-sm btn-primary-custom">Lưu</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button type="button" style="margin-bottom: 15px; color: #ffffff" class="btn btn-warning btn-primary-custom"
+                                    data-toggle="modal" data-target=".bd-example-modal-lg">
+                                Thêm sản phẩm
+                            </button>
+
+                            <button style="color: #ffffff" class="btn btn-warning btn-primary-custom pull-right"
+                                    onClick="onFinish()">
+                                Hoàn tất
+                            </button>
+
+
+                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                 aria-labelledby="myLargeModalLabel" aria-hidden="true" id="addItemModal">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="container" style="padding: 15px">
+                                            <div class="modal-head">
+                                                <h4 style="margin:15px 0;">Chọn sản phẩm muốn thêm</h4>
+
+                                                <form class="form-inline my-2 my-lg-0">
+                                                    <input class="form-control mr-sm-2" type="search"
+                                                           placeholder="Search" aria-label="Search">
+                                                    <button class="btn btn-danger btn-primary-custom pull-right my-2 my-sm-0"
+                                                            type="submit">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                            <div class="product-image-container" id="product-image-container">
+
+                                            </div>
+                                            <button data-dismiss="modal" class="btn btn-danger btn-primary-custom pull-right"
+                                                    onClick="onConfirm()">
+                                                Xác nhận
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center" scope="col">#</th>
+                                            <th style="text-align: center" scope="col">Hình ảnh</th>
+                                            <th style="text-align: center" scope="col">Tên sản phẩm</th>
+                                            <th style="text-align: center" scope="col">Giá gốc</th>
+                                            <th style="text-align: center" scope="col">% Giảm</th>
+                                            <th style="text-align: center" scope="col">Giá sau giảm</th>
+                                            <th style="text-align: center" scope="col"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tab">
+                                        <tr valign="middle" align="center">
+                                            <td class="v-align">
+                                                <input type="checkbox">
+                                            </td>
+                                            <td class="v-align">
+                                                <img class="img-thumbnail product-image" src="http://cdn.phuongtung.info/pt/products/oppo/A71/oppo-a715-1.jpg"
+                                                     alt="">
+                                            </td>
+                                            <td class="v-align">
+                                                Oppo A715
+                                            </td>
+                                            <td class="v-align">
+                                                <input type="text" value="1000000" class="form-control" style="width: 115px;">
+                                                <span>VNĐ</span>
+                                            </td>
+                                            <td class="v-align">
+                                                <input type="text" value="10" class="form-control"
+                                                       style="width: 115px;">
+                                                <span> % Giảm</span>
+                                            </td>
+                                            <td class="v-align">
+                                                <input type="text" value="900000" class="form-control" style="width: 115px;">
+                                                <span> VNĐ</span>
+                                            </td>
+                                            <td class="v-align">
+                                                <button class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var selectedItem = [];
+    var items = [{
+        id: 1,
+        name: "Oppo A714",
+        imageSrc: "https://cdn.tgdd.vn/Products/Images/42/113259/oppo-a714-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 2,
+        name: "Oppo R7S",
+        imageSrc: "https://www.naijatechguide.com/wp-content/uploads/2015/10/oppo-r7s.png",
+        price: 1000000
+    },
+    {
+        id: 3,
+        name: "Oppo A715",
+        imageSrc: "http://cdn.phuongtung.info/pt/products/oppo/A71/oppo-a715-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 4,
+        name: "Oppo A714",
+        imageSrc: "https://cdn.tgdd.vn/Products/Images/42/113259/oppo-a714-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 5,
+        name: "Oppo R7S",
+        imageSrc: "https://www.naijatechguide.com/wp-content/uploads/2015/10/oppo-r7s.png",
+        price: 1000000
+    },
+    {
+        id: 6,
+        name: "Oppo A715",
+        imageSrc: "http://cdn.phuongtung.info/pt/products/oppo/A71/oppo-a715-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 7,
+        name: "Oppo A714",
+        imageSrc: "https://cdn.tgdd.vn/Products/Images/42/113259/oppo-a714-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 8,
+        name: "Oppo R7S",
+        imageSrc: "https://www.naijatechguide.com/wp-content/uploads/2015/10/oppo-r7s.png",
+        price: 1000000
+    },
+    {
+        id: 9,
+        name: "Oppo A715",
+        imageSrc: "http://cdn.phuongtung.info/pt/products/oppo/A71/oppo-a715-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 10,
+        name: "Oppo A714",
+        imageSrc: "https://cdn.tgdd.vn/Products/Images/42/113259/oppo-a714-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 11,
+        name: "Oppo R7S",
+        imageSrc: "https://www.naijatechguide.com/wp-content/uploads/2015/10/oppo-r7s.png",
+        price: 1000000
+    },
+    {
+        id: 12,
+        name: "Oppo A715",
+        imageSrc: "http://cdn.phuongtung.info/pt/products/oppo/A71/oppo-a715-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 13,
+        name: "Oppo A714",
+        imageSrc: "https://cdn.tgdd.vn/Products/Images/42/113259/oppo-a714-1.jpg",
+        price: 1000000
+    },
+    {
+        id: 14,
+        name: "Oppo R7S",
+        imageSrc: "https://www.naijatechguide.com/wp-content/uploads/2015/10/oppo-r7s.png",
+        price: 1000000
+    },
+    {
+        id: 15,
+        name: "Oppo A715",
+        imageSrc: "http://cdn.phuongtung.info/pt/products/oppo/A71/oppo-a715-1.jpg",
+        price: 1000000
+    }
+    ];
+
+    window.onload = displayItems;
+
+    function displayItems() {
+        var imageCoverDiv = document.createElement("div");
+        imageCoverDiv.setAttribute("class", "item");
+
+
+        items.forEach(item => {
+            var image = document.createElement("img");
+            image.setAttribute("src", item.imageSrc);
+            image.setAttribute("class", "img-thumbnail product-image")
+            image.setAttribute("id", item.id);
+            image.setAttribute("alt", item.name);
+
+            image.addEventListener("click", function () {
+                alert("Sản phẩm đã được thêm vào");
+                onConfirm(item);
+            });
+
+            var itemName = document.createElement("span");
+            var itemNameText = document.createTextNode(item.name);
+            itemName.appendChild(itemNameText);
+
+            var divImage = document.createElement("div");
+            divImage.setAttribute("class", "div-image");
+
+            divImage.appendChild(image);
+            divImage.appendChild(itemName);
+
+            imageCoverDiv.appendChild(divImage);
+        });
+
+        document.getElementById("product-image-container").appendChild(imageCoverDiv);
+
+    }
+
+    function onConfirm(item) {
+        selectedItem.push(item);
+        var x = selectedItem.length;
+
+        var body = document.getElementById("tab");
+
+        // creating all cells
+        for (var i = 0; i < 1; i++) {
+            // creates a table row
+            var row = document.createElement("tr");
+            row.setAttribute("valign", "middle");
+            row.setAttribute("align", "center");
+
+            // select đầu dòng
+            var cell0 = document.createElement("td");
+            cell0.setAttribute("class", "v-align");
+
+            var checkbox = document.createElement("input");
+            checkbox.setAttribute('type', 'checkbox');
+
+            cell0.appendChild(checkbox);
+
+            // image
+            var cell1 = document.createElement("td");
+            cell1.setAttribute("class", "v-align");
+
+            var image = document.createElement("img");
+            image.setAttribute("src", item.imageSrc);
+            image.setAttribute("class", "img-thumbnail product-image")
+            image.setAttribute("id", item.id);
+            image.setAttribute("alt", item.name);
+            image.setAttribute('style', "width: 100px; height: 100px");
+
+            cell1.appendChild(image);
+
+            // name
+            var cell2 = document.createElement("td");
+            cell2.setAttribute("class", "v-align");
+            var cell2Text = document.createTextNode(item.name);
+            cell2.appendChild(cell2Text);
+
+            // gia goc
+            var cell3 = document.createElement("td");
+            cell3.setAttribute("class", "v-align");
+
+            var inputPriceBefore = document.createElement("input");
+            inputPriceBefore.setAttribute('type', 'text');
+            inputPriceBefore.setAttribute('value', item.price);
+            inputPriceBefore.setAttribute('class', "form-control");;
+            inputPriceBefore.setAttribute('style', "width: 115px;");
+
+            var lablePriceBefore = document.createElement("span")
+            var lablePriceBeforeText = document.createTextNode(" VNĐ");
+            lablePriceBefore.appendChild(lablePriceBeforeText);
+
+            cell3.appendChild(inputPriceBefore);
+            cell3.appendChild(lablePriceBefore);
+
+            // phan tram giam
+            var cell4 = document.createElement("td");
+            cell4.setAttribute("class", "v-align");
+
+            var inputPercent = document.createElement("input");
+            inputPercent.setAttribute('type', 'text');
+            inputPercent.setAttribute('value', 10);
+            inputPercent.setAttribute('class', "form-control");;
+            inputPercent.setAttribute('style', "width: 115px;");
+
+            var inputPercentSpan = document.createElement("span")
+            var inputPercentSpanText = document.createTextNode(" % Giảm");
+            inputPercentSpan.appendChild(inputPercentSpanText);
+
+            cell4.appendChild(inputPercent);
+            cell4.appendChild(inputPercentSpan);
+
+            // gia sau giam
+            var cell5 = document.createElement("td");
+            cell5.setAttribute("class", "v-align");
+
+            var priceAfter = item.price - (item.price * (inputPercent.value / 100));
+
+            var inputPriceAfter = document.createElement("input");
+            inputPriceAfter.setAttribute('type', 'text');
+            inputPriceAfter.setAttribute('value', priceAfter);
+            inputPriceAfter.setAttribute('class', "form-control");
+            inputPriceAfter.setAttribute('style', "width: 115px;");
+
+            var lablePriceAfter = document.createElement("span")
+            var lablePriceAfterText = document.createTextNode(" VNĐ");
+            lablePriceAfter.appendChild(lablePriceAfterText);
+
+            cell5.appendChild(inputPriceAfter);
+            cell5.appendChild(lablePriceAfter);
+
+            // action
+            var cell6 = document.createElement("td");
+            cell6.setAttribute("class", "v-align");
+
+            var btn = document.createElement("button");
+            btn.setAttribute("class", "btn btn-sm btn-danger");
+
+            var icon = document.createElement("i");
+            icon.className = "fa fa-trash";
+            btn.appendChild(icon);
+
+            cell6.appendChild(btn);
+
+            // generate row
+            row.appendChild(cell0);
+            row.appendChild(cell1);
+            row.appendChild(cell2);
+            row.appendChild(cell3);
+            row.appendChild(cell4);
+            row.appendChild(cell5);
+            row.appendChild(cell6);
+
+            // add the row to the end of the table body
+            body.appendChild(row);
+
+            btn.addEventListener("click", function () {
+                row.parentNode.removeChild(row);
+            });
+        }
+        body.appendChild(tblBody);
+    }
+
+    function onFinish() {
+        console.log(selectedItem);
+    }
+
+    $(function () {
+        $('input[name="datetimes"]').daterangepicker({
+            timePicker: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'M/DD hh:mm A'
+            }
+        });
+    });
+
+    function onEditEventTitle(value) {
+        document.getElementById("eventTitle").innerHTML = value;
+    }
+
+    function onEditDate(value) {
+        document.getElementById("eventTime").innerHTML = value;
+    }
+
+    function onChangeStatus(value) {
+        if (value === "happening") {
+            document.getElementById("bageStatus").className = "badge badge-warning bage-cus-available center"
+            document.getElementById("bageStatusText").innerHTML = "Đang diễn ra";
+        }
+        if (value === "comming") {
+            document.getElementById("bageStatus").className = "badge badge-warning bage-cus-comming center"
+            document.getElementById("bageStatusText").innerHTML = "Sắp diễn ra";
+        }
+
+    }
+</script>
+

@@ -1,0 +1,188 @@
+﻿@{
+    Layout = "_LayoutSellers";
+}
+<style>
+    .media-obj2 {
+        justify-content: space-between;
+    }
+</style>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row" style="margin-bottom: -15px;">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <strong class="card-title" style="font-size: 23px">CHI TIẾT ĐƠN HÀNG</strong>
+                    </div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+        @foreach (HoaDon x in Model.content)
+        {
+            <div class="row" style="margin-bottom: -15px;">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media-obj2">
+                                <div class="left">
+                                    <div class="media media-custom">
+                                        <i class="mr-3 fa fa-clipboard" style="font-size: larger; color: #ff5722;"></i>
+                                        <div class="media-body">
+                                            <div class="left">
+                                                <h5 style="margin-bottom: 10px">
+                                                    <strong class="card-title" style="font-size: 15px; color: #ff5722;">
+                                                        @x.TinhTrangTT
+                                                    </strong>
+                                                </h5>
+                                                <p style="font-size: 14px">
+                                                    Đã giao hàng vào ngày @x.Ngay
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <button type="button" class="btn btn-outline-warning btn-sm">Phê duyệt</button>
+                                    <button type="button" class="btn btn-outline-warning btn-sm">Từ chối</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /# column -->
+            </div>
+            <div class="row" style="margin-bottom: -15px;">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media-obj2">
+                                <div class="left">
+                                    <div class="media">
+                                        <i class="mr-3 fa fa-qrcode" style="font-size: larger; color: #ff5722;"></i>
+                                        <div class="media-body">
+                                            <h5 style="margin-bottom: 10px">
+                                                <strong class="card-title" style="font-size: 15px;">
+                                                    ID
+                                                    Đơn hàng
+                                                </strong>
+                                            </h5>
+                                            <p style="font-size: 14px">
+                                                @x.ID
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="media">
+                                        <i class="mr-3 fa fa-map-marker" style="font-size: larger; color: #ff5722;"></i>
+                                        <div class="media-body">
+                                            <h5 style="margin-bottom: 10px">
+                                                <strong class="card-title" style="font-size: 15px;">
+                                                    Địa
+                                                    chỉ nhận hàng
+                                                </strong>
+                                            </h5>
+                                            <p style="font-size: 14px">
+                                                <div class="diachi" style="margin-top: -6px;">Long, 84939847299</div>
+                                                <div class="diachi">
+                                                    @x.DiaChiKH
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="media">
+                                        <i class="mr-3 fa fa-truck" style="font-size: larger; color: #ff5722;"></i>
+                                        <div class="media-body">
+                                            <h5 style="margin-bottom: 10px"><strong class="card-title" style="font-size: 15px;">Phương thức thanh toán</strong></h5>
+                                            <p style="font-size: 14px">
+                                                @x.PhuongThucTT
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /# column -->
+            </div>
+        }
+        <div class="row" style="margin-bottom: -15px;">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media">
+                            <i class="mr-3 fa fa-dollar" style="font-size: larger; color: #ff5722;"></i>
+                            <div class="media-body">
+                                <h5 style="margin-bottom: 10px">
+                                    <strong class="card-title" style="font-size: 15px;">
+                                        Thông
+                                        tin thanh toán
+                                    </strong>
+                                </h5>
+                                <div class="table-stats order-table ov-h">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="avatar">Sản phẩm</th>
+                                                <th>Đơn giá</th>
+                                                <th>Số lượng </th>
+                                                <th>Thành tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (ChiTietHD i in Model.content[0].ChiTietHD)
+                                            {
+                                                <tr>
+                                                    <td class="serial">@i.IDPhanLoaiSP</td>
+                                                    <td> <span class="name">@i.Gia</span> </td>
+                                                    <td> <span class="product">@i.Soluong</span> </td>
+                                                    <td><span class="">@(i.Soluong*i.Gia)</span></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div> <!-- /.table-stats -->
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div class="media">
+                                            <div class="media-body" style="text-align: right;">
+                                                <p class="ct">
+                                                    Tổng tiền sản phẩm
+                                                </p>
+                                                <p class="ct">
+                                                    Phí vận chuyển
+                                                </p>
+                                                <p class="ct">
+                                                    Doanh thu
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3" style="text-align:right;">
+                                        <div class="media">
+                                            <div class="media-body" style="text-align: right; border-left: 1px solid lightgrey;">
+                                                @foreach (HoaDon x in Model.content)
+                                                {   
+                                                    <p class="ctp">
+                                                        @x.TongTien
+                                                    </p>
+                                                    <p class="ctp">
+                                                        đ30.000
+                                                    </p>
+                                                    <p class="ctp">
+                                                        <strong style="font-size: 22px; color: #ff5722">đ @(x.TongTien+30000)</strong>
+                                                    </p>
+                                                }
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+    </div>
+    <!-- /.content -->
+</div>

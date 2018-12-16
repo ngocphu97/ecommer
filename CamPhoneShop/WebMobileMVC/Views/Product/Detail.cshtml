@@ -1,0 +1,342 @@
+﻿
+@{
+    Layout = "_Layout";
+}
+<style>
+    #img-preview img {
+        width: 180px;
+        height: 180px;
+    }
+</style>
+<div class="content">
+    <div class="animated fadeIn row">
+        <div class="col-lg-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <strong class="card-title" style="font-size: 25px">CHI TIẾT SẢN PHẨM</strong>
+
+                    <div class="action float-right">
+                        <button class="btn btn-sm btn-warning btn-primary-custom" style="color: #ffffff">
+                            <i class="fa fa-save"></i> Chỉnh sửa
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div style="display: flex">
+                                <div id="img-preview" style="display: flex">
+                                    @foreach (SanPham i in Model.content)
+                                    {
+                                        <img src="@i.Hinh"
+                                             alt="">
+                                        <img src="@i.HinhCT"
+                                             alt="">
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="information">
+                                <form>
+                                    <br>
+                                    <h4>
+                                        <a data-toggle="collapse" href="#basicInfomation" role="button"
+                                           aria-expanded="false" aria-controls="basicInfomation">
+                                            Thông tin cơ bản <i class="fa fa-angle-double-down"></i>
+                                        </a>
+                                    </h4>
+                                    <br>
+                                    @foreach (SanPham i in Model.content)
+                                    {
+                                        <div class="collapse" id="basicInfomation">
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Tên sản phẩm
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@i.Ten</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Mô tả sản phẩm (Tối đa 500 ký tự)
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@i.Mota</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Nội dung
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@i.NoiDung</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Danh mục sản phẩm
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <p>@i.IDDanhMuc</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Tình trạng hàng
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <p>@i.TinhTrangHang</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm" class="col-md-2">
+                                                    Bảo hành
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@i.ThoiGianBH</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <h4>
+                                            <a data-toggle="collapse" href="#productConfig" role="button"
+                                               aria-expanded="false" aria-controls="productConfig">
+                                                Cấu hình sản phẩm <i class="fa fa-angle-double-down"></i>
+                                            </a>
+                                        </h4>
+                                        <br>
+
+                                        <div class="collapse" id="productConfig">
+                                            <div class="form-group row ">
+                                                <label class="col-md-2">
+                                                    Thương hiệu
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.thuonghieu</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Bộ nhớ
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.bonho</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Mạng
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.mang</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    SIM
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.sim</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Chống thấm nước
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.chongthamnuoc</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Màn hình
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.manhinh</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Hệ điều hành
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.hedieuhanh</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Ram
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.Ram</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Camera trước
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.cmrtruoc</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Camera sau
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.cmrsau</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Bluetooth
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.bluetooth</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Pin
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.pin</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <h4>
+                                            <a data-toggle="collapse" href="#productType" role="button"
+                                               aria-expanded="false" aria-controls="productType">
+                                                Loại sản phẩm <i class="fa fa-angle-double-down"></i>
+                                            </a>
+                                        </h4>
+                                        <br>
+
+                                        <div class="collapse" id="productType">
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Màu
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.mau</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Giá bán
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.giaBan</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Giá gốc
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.giaGoc</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2">
+                                                    Giá khuyến mãi
+                                                </label>
+                                                <div class="col-md-10">
+                                                    <p>@ViewBag.giaKM</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+    var temp = [];
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var x = document.createElement("img");
+                x.setAttribute("src", e.target.result);
+                x.setAttribute("class", "image-preview")
+                x.setAttribute("alt", "image preview");
+                x.setAttribute("id", "image-preview");
+
+                var btn = document.createElement("button");
+                btn.setAttribute("class", "btn btn-sm btn-danger");
+
+                var icon = document.createElement("i");
+                icon.className = "fa fa-times";
+                btn.appendChild(icon);
+
+                var cancelAction = document.createElement("div");
+                cancelAction.setAttribute("class", "cancel-action");
+                cancelAction.appendChild(btn);
+
+                var container = document.createElement("div");
+                container.setAttribute("class", "cons");
+
+                container.appendChild(x);
+                container.appendChild(cancelAction);
+
+                document.getElementById("img-preview").appendChild(container);
+
+                btn.addEventListener("click", function () {
+                    container.parentNode.removeChild(container);
+                });
+
+                // thêm vô mảng với xóa mảng
+
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

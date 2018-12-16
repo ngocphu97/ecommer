@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "_LayoutSellers";
+}
+<style>
+    .media-obj2 {
+        justify-content: space-between;
+    }
+</style>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title" style="font-size: 25px">THÔNG BÁO</strong>
+                    </div>
+                    <div class="card-body">
+                        <!-- <div class="row" style="background-color: #fffdf5;"> -->
+                        @foreach (ThongBao i in Model.content)
+                        {
+                            <div class="media-obj">
+
+                                <div class="left">
+                                    <div class="media">
+                                        <img class="mr-3" src="@i.URL" style="height: 60px;width: 60px;"
+                                             alt="Generic placeholder image">
+                                        <div class="media-body">
+                                            <h5 style="margin-bottom: 10px;">
+                                                <strong class="card-title" style="font-size: 18px">
+                                                    @i.ID - @i.Ngay
+                                                </strong>
+                                            </h5>
+                                            <p>
+                                                @i.NoiDung
+                                            </p>
+                                            <p style="margin-top: -5px;">
+                                                @i.Ngay
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="right">
+                                    <a href="@Url.Action("Detail", "NotificationSeller", new { id = i.ID })" class="btn btn-outline-warning">Xem Chi tiết</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+    </div>
+
+</div>

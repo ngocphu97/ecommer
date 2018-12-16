@@ -1,0 +1,136 @@
+﻿@{
+    Layout = "_LayoutSellers";
+}
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>HỒ SƠ SHOP</h2>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card-body">
+                                <aside class="profile-nav alt">
+                                    <section class="card">
+                                        <div class="card-header user-header alt bg-dark">
+                                            <div class="media">
+                                                <a href="#">
+                                                    <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;"
+                                                         alt="" src="images/IMG_20181115_112921.jpg">
+                                                </a>
+                                                <div class="media-body">
+                                                    <h2 class="text-light display-6">Thanh Long</h2>
+                                                    <p>Đã tham gia 56 ngày trước</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <a href="#">
+                                                    <i class="fa fa-envelope-o"></i> Sản phẩm <span class="badge badge-primary pull-right">10</span>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="#">
+                                                    <i class="fa fa-tasks"></i> Tỉ lệ phản hồi <span class="badge badge-danger pull-right">15</span>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="#">
+                                                    <i class="fa fa-bell-o"></i> Thời gian phản hồi <span class="badge badge-success pull-right">11</span>
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="#">
+                                                    <i class="fa fa-comments-o"></i> Đánh giá shop <span class="badge badge-warning pull-right r-activity">03</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </section>
+                                </aside>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h3 class="text-center">Thông tin</h3>
+                                </div>
+                                <hr>
+                                <form action="#" method="post" novalidate="novalidate">
+
+                                    <div class="form-group">
+                                        <label for="cc-payment" class="control-label mb-1">Tên shop</label>
+                                        <input disabled id="cc-payment" name="cc-payment" type="text" class="form-control"
+                                               aria-required="true" aria-invalid="false" value="Thanh long">
+                                    </div>
+                                    <div class="form-group has-success">
+                                        <label for="cc-name" class="control-label mb-1">Điện thoại</label>
+                                        <input required id="cc-name" name="cc-name" type="tel" class="form-control cc-name valid"
+                                               placeholder="0939847299">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cc-exp" class="control-label mb-1">Email</label>
+                                        <input id="cc-exp" name="cc-exp" type="email" class="form-control cc-exp"
+                                               value="" data-val="true" data-val-required="Please enter the card expiration"
+                                               data-val-cc-exp="Please enter a valid month and year" placeholder="thanhlong@gmail.com">
+                                        <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="x_card_code" class="control-label mb-1">Địa chỉ</label>
+                                        <div class="input-group">
+                                            <input id="x_card_code" name="x_card_code" type="text" class="form-control cc-cvc"
+                                                   placeholder="123 Sư Vạn Hạnh phường 1 quận 10">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="x_card_code" class="control-label mb-1">Số CMND</label>
+                                        <div class="input-group">
+                                            <input id="x_card_code" name="x_card_code" type="text" class="form-control cc-cvc"
+                                                   placeholder="025599327">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="x_card_code" class="control-label mb-1">Ngày Đăng Ký</label>
+                                        <div class="input-group">
+                                            <input id="x_card_code" name="x_card_code" type="date" class="form-control cc-cvc"
+                                                   placeholder="025599327">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="x_card_code" class="control-label mb-1">Ngày Hết Hạn</label>
+                                        <div class="input-group">
+                                            <input id="x_card_code" name="x_card_code" type="date" class="form-control cc-cvc"
+                                                   placeholder="025599327">
+
+                                        </div>
+                                    </div>
+                                    <div>
+
+                                        <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block btn-primary-custom">
+                                            <i class="fa fa-lock fa-lg"></i>&nbsp;
+                                            <span id="payment-button-amount">Lưu</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div> <!-- /.card-body -->
+                        </div>
+                    </div> <!-- /.row -->
+                    <div class="card-body"></div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+    </div><!-- .animated -->
+</div>
